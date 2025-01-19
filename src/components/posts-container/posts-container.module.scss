@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    width: 938px;
+    gap: 20px;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.create li {
+    background-color: rgba(235, 238, 243, 1) !important;
+}

@@ -1,0 +1,91 @@
+.postItem {
+    display: flex;
+    background-color: white;
+    width: 938px;
+    height: 140px;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 5px; 
+    padding: 20px 15px;   
+}
+
+.title {
+    font-size: 20px;
+    color: rgba(24, 144, 255, 1);
+margin-right: 10px;
+text-overflow: ellipsis;
+overflow: hidden;
+max-width: 600px;
+white-space: nowrap;
+height: 28px;
+line-height: 30px;
+}
+
+.test {
+display: flex;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 0px;
+}
+
+.likes {
+    line-height: 30px;
+}
+
+.description {
+    font-size: 12px;
+    height: 30px;
+    text-overflow: hidden;
+    overflow: hidden;
+}
+
+.tag {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    font-family: Inter Regular;
+    margin-top: 8px;
+}
+
+.articleDescription {
+    margin-right: 80px;
+    width: 682px;
+    height: 140px;
+    overflow: hidden;
+}
+
+.author {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    width: 150px;
+    // height: 46px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.name {
+font-size: 18px;
+line-height: 28px;
+text-align: left;
+word-break: break-all;
+}
+
+.date {
+line-height: 22px;
+text-align: left;
+color: rgba(0, 0, 0, 0.5);
+}
+
+.avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}

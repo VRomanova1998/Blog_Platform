@@ -1,0 +1,84 @@
+{
+  "name": "blog-platform",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^5.5.2",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@ts-stack/markdown": "^1.5.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.7",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.1",
+    "@types/react-redux": "^7.1.34",
+    "antd": "^5.23.1",
+    "cra-template": "1.2.0",
+    "date-fns": "^4.1.0",
+    "markdown-to-jsx": "^7.7.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^8.0.6",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.0.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.83.4",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prepare": "husky",
+    "lint": "eslint ./src/**/*.tsx",
+    "lint:fix": "eslint ./src/**/*.tsx --fix",
+    "format": "prettier --write ./src"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/eslint-parser": "^7.26.5",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^16.2.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.2",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.0",
+    "prettier": "3.4.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.tsx": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
