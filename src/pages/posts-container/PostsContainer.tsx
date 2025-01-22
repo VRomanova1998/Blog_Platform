@@ -1,7 +1,7 @@
 import { Alert, Pagination, Spin } from 'antd';
 import { useEffect } from 'react';
 
-import { Post } from '../post/Post';
+import { Post } from '../../components/post/Post';
 import { getArticlesList } from '../../helper';
 import { Article } from '../../types/type';
 import { useAppSelector, useAppDispatch } from '../../hooks';
@@ -16,7 +16,6 @@ export const PostsContainer = () => {
   const summaryPages = Math.ceil(useAppSelector((state) => state.article.summaryPages));
   const isLoading = useAppSelector((state) => state.article.loading);
   const isError = useAppSelector((state) => state.article.error);
-
   useEffect(() => {
     dispatch(getArticlesList(currentPage));
   }, [currentPage]);

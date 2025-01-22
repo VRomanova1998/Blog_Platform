@@ -25,9 +25,10 @@ text-decoration-skip-ink: none;
 
 .button {
     background: none;
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
 font-size: 18px;
-line-height: 28px;
+line-height: 40px;
 text-align: left;
 text-underline-position: from-font;
 text-decoration-skip-ink: none;
@@ -37,4 +38,33 @@ text-decoration-skip-ink: none;
     border: 1px solid rgba(82, 196, 26, 1);
     color: rgba(82, 196, 26, 1);
     border-radius: 5px;
+    font-size: 12px;
+    height: 32px;
+    line-height: 28px;
+    margin-top: 5px;
+}
+
+.author {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 150px;
+    // height: 46px;
+}
+
+.name {
+font-size: 18px;
+line-height: 40px;
+text-align: left;
+word-break: break-all;
+}
+
+.activeSign {
+    border: 1px solid rgba(82, 196, 26, 1);
+    color: rgba(82, 196, 26, 1);
+    border-radius: 5px;
+}
+
+.signIn {
+    border: none;
 }

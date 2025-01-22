@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
 
+import avatar from '../../file/avatar.svg';
 import { Article } from '../../types/type';
 
 import styles from './post.module.scss';
@@ -34,7 +35,7 @@ export const Post = (props: Article) => {
           <span className={styles.name}>{props.author.username}</span>
           <span className={styles.date}>{createTime}</span>
         </div>
-        <img src={props.author.image} className={styles.avatar}></img>
+        <img src={props.author.image !== 'null' ? props.author.image : avatar} className={styles.avatar}></img>
       </div>
     </div>
   );
