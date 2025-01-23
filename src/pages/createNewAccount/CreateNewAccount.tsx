@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { registerUser } from '../../helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -18,13 +18,12 @@ type FormValues = {
 
 const CreateNewAccount: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [isValidate, setIsValidate] = useState(false);
+  const navigate = useNavigate();
+  // const [isValidate, setIsValidate] = useState(false);
   const errorMessage = useAppSelector((state) => state.user.errorMessage);
-  // const errorUserName = useAppSelector((state) => state.user.userProfile.errors?.username);
   useEffect(() => {
     dispatch(clearError());
   }, []);
-  //console.log(errorUserName);
   const {
     register,
     formState: { errors },
@@ -40,15 +39,15 @@ const CreateNewAccount: React.FC = () => {
       email: data.email,
       password: data.password,
     };
-    dispatch(registerUser(user));
-    // console.log(errorUserName);
-    // if (errorUserName) {
+    dispatch(registerUser(user)).then(() => navigate('/'));
+    // if (errorMessage) {
     //   setIsValidate(false);
     // } else setIsValidate(true);
   };
-  return isValidate ? (
-    <Navigate to="/sign-in" />
-  ) : (
+  // isValidate ? (
+  //     <Navigate to="/sign-in" />
+  //   ) : (
+  return (
     <div className={styles.form}>
       <h1 className={styles.title}>Create new account</h1>
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)} onChange={() => dispatch(clearError())}>
@@ -72,7 +71,7 @@ const CreateNewAccount: React.FC = () => {
           />
         </label>
         <div style={{ height: 30 }}>
-          {errorMessage !== '' && <p className={styles.errorMessage}>{errorMessage}</p>}
+          {errorMessage === 'Имя пользователя занято' && <p className={styles.errorMessage}>{errorMessage}</p>}
           {errors?.username && (
             <p className={styles.errorMessage}>
               {errors?.username.message ||
@@ -92,6 +91,9 @@ const CreateNewAccount: React.FC = () => {
           />
         </label>
         <div style={{ height: 30 }}>
+          {errorMessage === 'Пользователь с таким email уже зарегистрирован' && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
           {errors?.email && <p className={styles.errorMessage}>Указанный email некорректен</p>}
         </div>
         <label className={styles.label}>

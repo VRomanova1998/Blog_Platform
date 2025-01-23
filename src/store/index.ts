@@ -5,11 +5,13 @@ import storage from 'redux-persist/lib/storage';
 import articleReducer from './articlesSlice';
 import currentArticleReducer from './currentArticleSlice';
 import userReducer from './userSlice';
+import createArticlesReduser from './createArticleSlice';
 
 const rootReducer = combineReducers({
   article: articleReducer,
   currentArticle: currentArticleReducer,
   user: userReducer,
+  createArticle: createArticlesReduser,
 });
 const persistConfig = {
   key: 'root',

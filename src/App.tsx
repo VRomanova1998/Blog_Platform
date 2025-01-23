@@ -8,6 +8,7 @@ import CreateNewAccount from './pages/createNewAccount/CreateNewAccount';
 import SignInPage from './pages/sign-in/SignIn';
 import EditProfilePage from './pages/edit-profile/EditProfilePage';
 import { RequireAuth } from './hoc/RequireAuth';
+import CreateNewArticle from './pages/create-new-article/CreateNewArticle';
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
           element={
             <RequireAuth>
               <EditProfilePage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/new-article"
+          element={
+            <RequireAuth>
+              <CreateNewArticle />
             </RequireAuth>
           }
         />

@@ -48,7 +48,7 @@ text-decoration-skip-ink: none;
     display: flex;
     justify-content: center;
     gap: 10px;
-    width: 150px;
+    // width: 150px;
     // height: 46px;
 }
 
@@ -56,7 +56,8 @@ text-decoration-skip-ink: none;
 font-size: 18px;
 line-height: 40px;
 text-align: left;
-word-break: break-all;
+text-overflow: ellipsis;
+word-wrap: break-word;
 }
 
 .activeSign {

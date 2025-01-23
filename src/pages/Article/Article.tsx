@@ -1,20 +1,22 @@
-/* eslint-disable react/no-children-prop */
 import Markdown from 'markdown-to-jsx';
 import { HeartOutlined } from '@ant-design/icons';
 import { Alert, Spin, Tag } from 'antd';
 import { format } from 'date-fns';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
-import { getOneArticle } from '../../helper';
+import { fetchDeleteArticle, getOneArticle } from '../../helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import styles from './article.module.scss';
 
 export const ArticlePost: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const isLoading = useAppSelector((state) => state.currentArticle.loading);
   const isError = useAppSelector((state) => state.currentArticle.error);
+  const isLogin = useAppSelector((state) => state.user.isLogin);
+  const currentUser = useAppSelector((state) => state.user.userProfile);
   const id = useParams().id;
   useEffect(() => {
     dispatch(getOneArticle(id));
@@ -27,6 +29,9 @@ export const ArticlePost: React.FC = () => {
       </Tag>
     );
   });
+  const deleteArticle = () => {
+    fetchDeleteArticle(currentUser.token, currentPost.slug).then(() => navigate('/'));
+  };
   const createTime = currentPost.createdAt !== '' ? format(new Date(currentPost.createdAt), 'MMMM dd, yyyy') : '';
   const descriptionPost = currentPost.body;
   if (isError) {
@@ -47,15 +52,25 @@ export const ArticlePost: React.FC = () => {
               <div className={styles.tagsContainer}>{currentTags}</div>
               <p className={styles.description}>{currentPost.description}</p>
             </div>
-            <div className={styles.author}>
-              <div className={styles.info}>
-                <span className={styles.name}>{currentPost.author.username}</span>
-                <span className={styles.date}>{createTime}</span>
+            <div>
+              <div className={styles.author}>
+                <div className={styles.info}>
+                  <span className={styles.name}>{currentPost.author.username}</span>
+                  <span className={styles.date}>{createTime}</span>
+                </div>
+                <img src={currentPost.author.image} className={styles.avatar}></img>
               </div>
-              <img src={currentPost.author.image} className={styles.avatar}></img>
+              {isLogin && currentPost.author.username === currentUser.username && (
+                <div className={styles.author}>
+                  <button className={styles.deleteButton} onClick={deleteArticle}>
+                    Delete
+                  </button>
+                  <button className={styles.editButton}>Edit</button>
+                </div>
+              )}
             </div>
           </div>
-          <Markdown children={descriptionPost} />
+          <Markdown>{descriptionPost}</Markdown>
         </div>
       );
     }

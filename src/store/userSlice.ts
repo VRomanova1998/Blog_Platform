@@ -4,12 +4,12 @@ import { get, getUserProfile, registerUser, updateCurrentUser } from '../helper'
 
 type InitialState = {
   userProfile: {
-    username?: string;
-    bio?: string;
-    image?: string;
-    following?: boolean;
-    email?: string;
-    token?: string;
+    username: string;
+    bio: string;
+    image: string;
+    following: boolean;
+    email: string;
+    token: string;
   };
   loading: boolean;
   error: boolean;
@@ -18,7 +18,7 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  userProfile: {},
+  userProfile: { username: '', bio: '', image: '', following: false, email: '', token: '' },
   loading: false,
   error: false,
   isLogin: null,
@@ -30,7 +30,7 @@ const userLogIn = createSlice({
   initialState,
   reducers: {
     logOut(state) {
-      state.userProfile = {};
+      state.userProfile = { username: '', bio: '', image: '', following: false, email: '', token: '' };
       state.isLogin = false;
       localStorage.clear();
     },

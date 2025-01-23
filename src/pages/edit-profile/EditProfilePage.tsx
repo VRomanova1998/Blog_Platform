@@ -26,7 +26,8 @@ const EditProfilePage: React.FC = () => {
     mode: 'onBlur',
   });
   const onSubmit = (data: FormValues) => {
-    const info = data.bio ? { ...data } : { ...data, bio: '', token: currentUser.token || '' };
+    let info = data.bio ? { ...data } : { ...data, bio: '', token: currentUser.token || '' };
+    info = data.image ? { ...info } : { ...info, image: `${currentUser.image}` };
     dispatch(updateCurrentUser(info));
     reset();
   };
@@ -92,18 +93,21 @@ const EditProfilePage: React.FC = () => {
             className={styles.input}
             placeholder="Avatar image"
             {...register('image', {
+              required: false,
               validate: {
                 isValidateURLImage: (value) => {
-                  return new Promise((resolve) => {
-                    const img = new Image();
-                    img.src = value;
-                    img.onload = () => {
-                      resolve(true);
-                    };
-                    img.onerror = () => {
-                      resolve(false);
-                    };
-                  });
+                  if (value !== '') {
+                    return new Promise((resolve) => {
+                      const img = new Image();
+                      img.src = value;
+                      img.onload = () => {
+                        resolve(true);
+                      };
+                      img.onerror = () => {
+                        resolve(false);
+                      };
+                    });
+                  }
                 },
               },
             })}

@@ -125,3 +125,30 @@
 // const onFinish = (values: any) => {
 //   console.log(values);
 // };
+
+// const tags = tagsArray.map((item, index) => {
+//     return (
+//       <div key={item.id} className={styles.tagSection}>
+//         <input
+//           placeholder="Tag"
+//           className={styles.tag}
+//           {...register(`tags.${item.id}.value`)}
+//           defaultValue={item.value}
+//         />
+//         {/* <button className={styles.deleteButton} onClick={() => deleteTag(item.id)}>
+//           Delete
+//         </button> */}
+//         <button className={styles.deleteButton} onClick={() => remove(index)}>
+//           Delete
+//         </button>
+//         {index === tagsArray.length - 1 && (
+//           // <button className={styles.addButton} onClick={() => addTag()}>
+//           //   Add Tag
+//           // </button>
+//           <button className={styles.addButton} onClick={() => append({ value: '' })}>
+//             Add Tag
+//           </button>
+//         )}
+//       </div>
+//     );
+//   });

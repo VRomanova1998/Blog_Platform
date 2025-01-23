@@ -16,7 +16,7 @@ export const Header = () => {
         <span className={styles.tittle}>Realworld Blog</span>
       </Link>
       <section className={styles.buttonContainer}>
-        <Link to="/" style={{ textDecoration: 'none' }} className={[styles.button, styles.active].join(' ')}>
+        <Link to="/new-article" style={{ textDecoration: 'none' }} className={[styles.button, styles.active].join(' ')}>
           Create article
         </Link>
         <Link to="/profile" style={{ textDecoration: 'none' }}>

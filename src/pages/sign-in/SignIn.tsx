@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { getUserProfile } from '../../helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -15,8 +15,11 @@ type FormValues = {
 
 const SignInPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isLogin = useAppSelector((state) => state.user.isLogin);
+  const navigate = useNavigate();
   const error = useAppSelector((state) => state.user.error);
+  useEffect(() => {
+    dispatch(clearError());
+  }, []);
   const {
     register,
     formState: { errors },
@@ -26,11 +29,9 @@ const SignInPage: React.FC = () => {
     mode: 'onBlur',
   });
   const onSubmit = (data: FormValues) => {
-    dispatch(getUserProfile(data));
+    dispatch(getUserProfile(data)).then(() => navigate('/'));
   };
-  return isLogin ? (
-    <Navigate to="/" />
-  ) : (
+  return (
     <div className={styles.form}>
       <h1 className={styles.title}>Sign In</h1>
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)} onChange={() => dispatch(clearError())}>
