@@ -1,0 +1,125 @@
+.label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: rgba(38, 38, 38, 1);
+}
+
+.input {
+    // width: 320px;
+    height: 40px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    border-radius: 5px;
+    font-size: 16px;
+    outline:none;
+padding: 5px;
+}
+
+.input::placeholder {
+    color: rgba(191, 191, 191, 1);
+    display: inline-block;
+}
+
+.title {
+    font-size: 20px;
+    text-align: center;
+    margin: 0px;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+//justify-content: space-between;
+// gap: 0px;
+background-color: white;
+width: 938px;
+height: 100%;
+margin: 0 auto;
+padding: 48px 32px 48px 32px;
+border: 1px solid rgba(217, 217, 217, 1);
+gap: 21px;
+border-radius: 6px;
+box-shadow: 0px 22px 106px 0px rgba(0, 0, 0, 0.07);
+}
+
+.form {
+    display: flex;
+flex-direction: column;
+}
+
+.text {
+    width: 874px;
+height: 192px;
+
+}
+
+.deleteButton {
+    width: 120px;
+    height: 40px;
+    padding: 5px;
+    background: none;
+    border: 1px solid rgba(245, 34, 45, 1);
+    border-radius: 5px;
+    color: rgba(245, 34, 45, 1);
+    font-size: 16px;
+    
+}
+
+.addButton {
+ width: 120px;
+    height: 40px;
+    padding: 5px;
+    background: none;
+    border: 1px solid rgba(24, 144, 255, 1);
+    border-radius: 5px;
+    color: rgba(24, 144, 255, 1);
+    font-size: 16px;
+}
+
+.tagsContainer {
+    display: flex;
+flex-direction: column;
+//justify-content: space-between;
+gap: 10px;
+}
+
+.tag {
+    width: 300px;
+    height: 40px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    border-radius: 5px;
+    font-size: 16px;
+    outline:none;
+padding: 5px;
+}
+
+.tag::placeholder {
+    color: rgba(191, 191, 191, 1);
+    display: inline-block;
+}
+
+.tagSection {
+    display: flex;
+    gap: 10px;
+}
+
+
+.button {
+    background-color: rgba(24, 144, 255, 1);
+color: white;
+width: 319px;
+height: 40px;
+padding: 8px 16px 8px 16px;
+gap: 4px;
+border: none;;
+border-radius: 4px;
+font-size: 16px;
+margin-top: 20px;
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: red;
+    font-weight: 400;
+    margin: 0;
+}

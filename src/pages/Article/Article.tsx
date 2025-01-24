@@ -1,8 +1,9 @@
 import Markdown from 'markdown-to-jsx';
 import { HeartOutlined } from '@ant-design/icons';
-import { Alert, Spin, Tag } from 'antd';
+import { Alert, Popconfirm, message, Spin, Tag } from 'antd';
+import type { PopconfirmProps } from 'antd';
 import { format } from 'date-fns';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
 import { fetchDeleteArticle, getOneArticle } from '../../helper';
@@ -29,9 +30,18 @@ export const ArticlePost: React.FC = () => {
       </Tag>
     );
   });
-  const deleteArticle = () => {
+  const confirm: PopconfirmProps['onConfirm'] = (e) => {
+    // console.log(e);
+    // deleteArticle();
     fetchDeleteArticle(currentUser.token, currentPost.slug).then(() => navigate('/'));
   };
+
+  // const cancel: PopconfirmProps['onCancel'] = (e) => {
+  //   console.log(e);
+  // };
+  // const deleteArticle = () => {
+  //   fetchDeleteArticle(currentUser.token, currentPost.slug).then(() => navigate('/'));
+  // };
   const createTime = currentPost.createdAt !== '' ? format(new Date(currentPost.createdAt), 'MMMM dd, yyyy') : '';
   const descriptionPost = currentPost.body;
   if (isError) {
@@ -62,10 +72,19 @@ export const ArticlePost: React.FC = () => {
               </div>
               {isLogin && currentPost.author.username === currentUser.username && (
                 <div className={styles.author}>
-                  <button className={styles.deleteButton} onClick={deleteArticle}>
-                    Delete
-                  </button>
-                  <button className={styles.editButton}>Edit</button>
+                  <Popconfirm
+                    placement="rightTop"
+                    title="Delete this article"
+                    description="Are you sure to delete this article?"
+                    onConfirm={confirm}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <button className={styles.deleteButton}>Delete</button>
+                  </Popconfirm>
+                  <Link to={`/articles/${id}/edit`} className={styles.editButton} style={{ textDecoration: 'none' }}>
+                    Edit
+                  </Link>
                 </div>
               )}
             </div>

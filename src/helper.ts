@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { FormValues } from './pages/edit-profile/EditProfilePage';
-import { DataArticle, TypeArticle } from './pages/create-new-article/CreateNewArticle';
-import store from './store';
+import { DataArticle, DataProps, EditProfileFormValues, FormValues } from './types/type';
 
 export const getArticlesList = createAsyncThunk('articles/articlesList', async (currentPage: number) => {
   try {
@@ -89,7 +87,7 @@ export const registerUser = createAsyncThunk('register/user', async (data: Regis
   }
 });
 
-export const updateCurrentUser = createAsyncThunk('userUpdate/user', async (data: FormValues) => {
+export const updateCurrentUser = createAsyncThunk('userUpdate/user', async (data: EditProfileFormValues) => {
   try {
     const user = {
       user: { ...data },
@@ -120,7 +118,7 @@ export const get = createAsyncThunk('currentUser/user', async (username: string)
   }
 });
 
-export const createArticle = async (data: TypeArticle, token?: string) => {
+export const createArticle = async (data: DataProps, token: string) => {
   try {
     const article = {
       article: { ...data },
@@ -151,6 +149,29 @@ export const fetchDeleteArticle = async (token: string, slug: string) => {
       },
     });
     if (!response.ok) throw new Error();
+  } catch (err) {
+    console.log(err);
+    // return Promise.reject(err);
+  }
+};
+
+export const updateArticle = async (data: DataProps, token: string, id?: string) => {
+  try {
+    const article = {
+      article: { ...data },
+    };
+    const response = await fetch(`https://blog-platform.kata.academy/api/articles/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify(article),
+    });
+    if (!response.ok) throw new Error();
+    const json = await response.json();
+    console.log(json);
+    return json;
   } catch (err) {
     console.log(err);
     // return Promise.reject(err);

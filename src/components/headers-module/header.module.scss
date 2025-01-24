@@ -14,7 +14,7 @@ line-height: 40px;
 text-align: left;
 text-underline-position: from-font;
 text-decoration-skip-ink: none;
-
+color: rgba(0, 0, 0, 0.75);
 }
 
 .buttonContainer {
@@ -32,6 +32,7 @@ line-height: 40px;
 text-align: left;
 text-underline-position: from-font;
 text-decoration-skip-ink: none;
+color: rgba(0, 0, 0, 0.75);
 }
 
 .active {
@@ -48,6 +49,7 @@ text-decoration-skip-ink: none;
     display: flex;
     justify-content: center;
     gap: 10px;
+    color: rgba(0, 0, 0, 0.75);
     // width: 150px;
     // height: 46px;
 }

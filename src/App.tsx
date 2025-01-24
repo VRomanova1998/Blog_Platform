@@ -9,6 +9,7 @@ import SignInPage from './pages/sign-in/SignIn';
 import EditProfilePage from './pages/edit-profile/EditProfilePage';
 import { RequireAuth } from './hoc/RequireAuth';
 import CreateNewArticle from './pages/create-new-article/CreateNewArticle';
+import { EditArticle } from './pages/edit-article/EditArticle';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<PostsContainer />} />
         <Route path="/articles" element={<Navigate to="/" replace />} />
         <Route path="/articles/:id" element={<ArticlePost />} />
+        <Route path="/articles/:id/edit" element={<EditArticle />} />
         <Route path="/sign-up" element={<CreateNewAccount />} />
         <Route path="/sign-in" element={<SignInPage />} />
         <Route

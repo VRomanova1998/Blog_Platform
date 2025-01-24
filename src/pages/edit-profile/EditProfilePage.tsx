@@ -4,15 +4,7 @@ import { useForm } from 'react-hook-form';
 import styles from '../sign-in/singIn.module.scss';
 import { updateCurrentUser } from '../../helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-
-export type FormValues = {
-  username: string;
-  email: string;
-  password: string;
-  image: string;
-  bio: string;
-  token: string;
-};
+import { EditProfileFormValues } from '../../types/type';
 
 const EditProfilePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,10 +14,10 @@ const EditProfilePage: React.FC = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<FormValues>({
+  } = useForm<EditProfileFormValues>({
     mode: 'onBlur',
   });
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: EditProfileFormValues) => {
     let info = data.bio ? { ...data } : { ...data, bio: '', token: currentUser.token || '' };
     info = data.image ? { ...info } : { ...info, image: `${currentUser.image}` };
     dispatch(updateCurrentUser(info));
