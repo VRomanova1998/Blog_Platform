@@ -14,6 +14,7 @@ export type Article = {
     image: string;
     following: boolean;
   };
+  isFullArticle?: boolean;
 };
 
 export type DataProps = {
@@ -50,4 +51,17 @@ export type EditProfileFormValues = {
   image: string;
   bio: string;
   token: string;
+};
+
+export type LogInData = {
+  email: string;
+  password: string;
+};
+
+export type RegisterData = {
+  username: string;
+  email: string;
+  password: string;
+  image?: string;
+  bio?: string;
 };

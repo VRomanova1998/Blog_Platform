@@ -26,6 +26,7 @@ const initialState: InitialState = {
       image: '',
       following: false,
     },
+    isFullArticle: true,
   },
   loading: false,
   error: false,

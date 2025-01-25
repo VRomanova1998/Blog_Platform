@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getArticlesList } from '../helper';
+import { getArticlesList, toLikeArticle } from '../helper';
 import { Article } from '../types/type';
 
 type InitialState = {
@@ -40,6 +40,22 @@ const articlesData = createSlice({
         state.summaryPages = action.payload.articlesCount / 5;
       })
       .addCase(getArticlesList.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      });
+    builder
+      .addCase(toLikeArticle.fulfilled, (state, action) => {
+        state.articles = state.articles.map((item) => {
+          if (item.slug === action.payload.article.slug) {
+            return {
+              ...item,
+              favorited: action.payload.article.favorited,
+              favoritesCount: action.payload.article.favoritesCount,
+            };
+          } else return { ...item };
+        });
+      })
+      .addCase(toLikeArticle.rejected, (state) => {
         state.loading = false;
         state.error = true;
       });

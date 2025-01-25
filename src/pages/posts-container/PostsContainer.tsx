@@ -16,11 +16,16 @@ export const PostsContainer = () => {
   const summaryPages = Math.ceil(useAppSelector((state) => state.article.summaryPages));
   const isLoading = useAppSelector((state) => state.article.loading);
   const isError = useAppSelector((state) => state.article.error);
+  const currentToken = useAppSelector((state) => state.user.userProfile.token);
   useEffect(() => {
-    dispatch(getArticlesList(currentPage));
+    const data = {
+      currentPage: currentPage,
+      token: currentToken,
+    };
+    dispatch(getArticlesList(data));
   }, [currentPage]);
   const articlesList = articlesArray.map((item: Article) => {
-    return <Post {...item} key={item.slug} />;
+    return <Post {...item} key={item.slug} isFullArticle={false} />;
   });
   const onChangePage = (page: number) => {
     dispatch(changePage(page));

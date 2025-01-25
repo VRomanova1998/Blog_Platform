@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useFieldArray, useForm } from 'react-hook-form';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useAppSelector } from '../../hooks';
 import { createArticle, updateArticle } from '../../helper';
@@ -25,6 +25,7 @@ export const FormArticle = (props: DataProps) => {
   });
   const navigate = useNavigate();
   const currentToken = useAppSelector((state) => state.user.userProfile.token);
+  const [isError, setIsError] = useState(false);
 
   const onSubmit = (data: DataArticle) => {
     const article = {
@@ -34,10 +35,18 @@ export const FormArticle = (props: DataProps) => {
       tagList: data.tagList.map((tag) => tag.value),
     };
     if (props.way === 'createNew') {
-      createArticle(article, currentToken).then(() => navigate('/'));
+      createArticle(article, currentToken)
+        .then(() => navigate('/'))
+        .catch(() => {
+          setIsError(true);
+        });
     }
     if (props.way === 'edit') {
-      updateArticle(article, currentToken, props.id).then(() => navigate('/'));
+      updateArticle(article, currentToken, props.id)
+        .then(() => navigate('/'))
+        .catch(() => {
+          setIsError(true);
+        });
     }
   };
   const { fields, append, remove } = useFieldArray({
@@ -46,7 +55,7 @@ export const FormArticle = (props: DataProps) => {
   });
   return (
     <React.Fragment>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} onChange={() => setIsError(false)}>
         <label className={styles.label}>
           Title
           <input
@@ -112,6 +121,7 @@ export const FormArticle = (props: DataProps) => {
             ))}
           </div>
         </label>
+        {isError && <p>Ошибка запроса на сервер</p>}
         <button type="submit" className={styles.button}>
           Send
         </button>

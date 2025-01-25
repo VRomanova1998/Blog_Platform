@@ -29,7 +29,11 @@ const SignInPage: React.FC = () => {
     mode: 'onBlur',
   });
   const onSubmit = (data: FormValues) => {
-    dispatch(getUserProfile(data)).then(() => navigate('/'));
+    dispatch(getUserProfile(data)).then((res) => {
+      if (!(res as any).error) {
+        navigate('/');
+      }
+    });
   };
   return (
     <div className={styles.form}>

@@ -8,38 +8,63 @@
     padding: 20px 15px;   
 }
 
+.postArticle {
+    display: flex;
+    justify-content: space-between;  
+}
+
 .title {
+    display: inline-block;
+    max-width: 690px;
+    font-size: 20px;
+    color: rgba(24, 144, 255, 1);
+margin-right: 10px;
+}
+
+.shortTitle {
+    display: inline-block;
     font-size: 20px;
     color: rgba(24, 144, 255, 1);
 margin-right: 10px;
 text-overflow: ellipsis;
 overflow: hidden;
-max-width: 600px;
+max-width: 550px;
 white-space: nowrap;
 height: 28px;
-line-height: 30px;
 }
 
 .test {
 display: flex;
 }
 
-.tagsContainer {
+.shortTagsContainer {
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
     gap: 0px;
 }
 
-.likes {
-    line-height: 30px;
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
 }
 
-.description {
+
+
+.likes {
+    line-height: 25px;
+}
+
+.shortDescription {
     font-size: 12px;
     height: 30px;
     text-overflow: hidden;
     overflow: hidden;
+}
+
+.description {
+    font-size: 12px;
 }
 
 .tag {
@@ -48,13 +73,21 @@ display: flex;
     font-size: 12px;
     font-family: Inter Regular;
     margin-top: 8px;
+    max-width: 900px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.articleDescription {
+.shortArticleDescription {
     margin-right: 80px;
     width: 682px;
     height: 140px;
     overflow: hidden;
+}
+
+.articleDescription {
+    margin-right: 20px;
+    width: 682px;
 }
 
 .author {
@@ -62,7 +95,6 @@ display: flex;
     justify-content: space-between;
     gap: 5px;
     width: 150px;
-    // height: 46px;
 }
 
 .info {
@@ -88,4 +120,15 @@ color: rgba(0, 0, 0, 0.5);
     width: 46px;
     height: 46px;
     border-radius: 50%;
+}
+
+.heart {
+    height: 25px;
+}
+.heartOutlined {
+    height: 25px;
+}
+
+.heart svg {
+    fill: rgba(255, 7, 7, 1)
 }

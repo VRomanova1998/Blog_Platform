@@ -25,14 +25,18 @@ const CreateNewAccount: React.FC = () => {
     mode: 'onBlur',
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     const user = {
       username: data.username,
       email: data.email,
       password: data.password,
     };
-    dispatch(registerUser(user)).then(() => navigate('/'));
+    const res = await dispatch(registerUser(user));
+    if (!(res as any).error) {
+      navigate('/sign-in');
+    }
   };
+
   return (
     <div className={styles.form}>
       <h1 className={styles.title}>Create new account</h1>
