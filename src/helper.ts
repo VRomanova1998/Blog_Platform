@@ -148,7 +148,6 @@ export const updateArticle = async (data: DataProps, token: string, id?: string)
     });
     if (!response.ok) throw new Error();
     const json = await response.json();
-    console.log(json);
     return json;
   } catch (err) {
     return err;
