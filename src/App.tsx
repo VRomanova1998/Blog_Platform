@@ -19,7 +19,6 @@ function App() {
         <Route path="/" element={<PostsContainer />} />
         <Route path="/articles" element={<Navigate to="/" replace />} />
         <Route path="/articles/:id" element={<ArticlePost />} />
-        <Route path="/articles/:id/edit" element={<EditArticle />} />
         <Route path="/sign-up" element={<CreateNewAccount />} />
         <Route path="/sign-in" element={<SignInPage />} />
         <Route
@@ -35,6 +34,14 @@ function App() {
           element={
             <RequireAuth>
               <CreateNewArticle />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/articles/:id/edit"
+          element={
+            <RequireAuth>
+              <EditArticle />
             </RequireAuth>
           }
         />
